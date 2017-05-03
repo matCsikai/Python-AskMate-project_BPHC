@@ -1,42 +1,39 @@
 <!DOCTYPE html>
-
-<html>
-
-    <head>
-
-    <title>AskMate
-    </title>
-
-    </head>
-        
-    <body>
-        {% for id, submisson_time, view_number, vote_number, title, message, image in question_line %}
-        <h1>Question {{ id }}
-        </h1>
-
-        <label for="Question">Question {{ title }} {{ message }}
-        </label>
-
-        <label>Submission time:<label><br>
-        {{ submisson_time }} View number {{ view_number }} Vote number {{ vote_number}} {{ image }}
-
-        <label>View number:<label><br>
-        {{ view_number }} Vote number {{ vote_number}} {{ image }}
-
-        <label>Vote number:<label><br>
-        {{ view_number }} Vote number {{ vote_number}} {{ image }}
-
+<html lang="en">
     
+<head>
+    <meta charset="UTF-8">
+    <title>AskMate - Question {{ question_id }}</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+
+<body>
+    <h1>Question {{ question_id }}</h1>
+    <table>
+        {% for question_id, submisson_time, view_number, vote_number, title, message, image in question_line %}
         <tr>
-            <th>ID</th>
-            <th>Questions</th>
+            <th>{{ title }}</th>
+            <th>{{ message }}</th>
+            <th>{{}}</th>
         </tr>
-        {% for id, submisson_time, view_number, vote_number, title, message, image in questions %}
+        {% endfor %}
+        {% for question_id, submisson_time, view_number, vote_number, title, message, image in question_line %}
         <tr>
-            <td> {{ id }} </td>
-            <td> {{ title }} </td>
+            <td> Submission time: {{ submisson_time }} </td>
+            <td> View number: {{ view_number }} </td>
+            <td> Vote number: {{ vote_number }} </td>
+            <td> {{ image }} </td>
         </tr>
         {% endfor %}
     </table>
+
 </body>
 </html>
+        
+      
+        
+    
+
+
+
