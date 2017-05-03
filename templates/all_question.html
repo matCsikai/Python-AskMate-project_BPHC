@@ -3,23 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>All question</title>
-    <style>
-        th {
-            text-align: left;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
 <body>
     <h1>All question</h1>
-    <a href="/story" class="button">Ask a new Question</a>
+    <a href="/question/new" class="button">Ask a question</a>
     <table>
         <tr>
             <th>ID</th>
+            <th>Submisson time</th>
             <th>Questions</th>
         </tr>
         {% for id, submisson_time, view_number, vote_number, title, message, image in questions %}
         <tr>
             <td> {{ id }} </td>
+            <td> {{ submisson_time }} </td>
             <td> {{ title }} </td>
         </tr>
         {% endfor %}
