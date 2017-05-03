@@ -10,6 +10,7 @@ def read_data(file_name):
         for line in csv.reader(f, delimiter=","):
             line[4] = base64.b64decode(line[4]).decode('utf-8')
             line[5] = base64.b64decode(line[5]).decode('utf-8')
+            line[6] = base64.b64decode(line[6]).decode('utf-8')
             data_list.append(line)
 
     return data_list
