@@ -18,9 +18,11 @@ def read_data(file_name):
 
 def write_data(file_name, data_list):
     with open(file_name, "w") as f:
-        for data in data_list:
-            data = ';'.join(data)
-            f.write(data + "\n")
+        for line in data_list:
+            line[4] = base64.b64encode(bytes(line[4], "utf-8")).decode("utf-8")
+            line[5] = base64.b64encode(bytes(line[5], "utf-8")).decode("utf-8")
+            line = ';'.join(line)
+            f.write(line + "\n")
 
 
 def generate_data_id(filename):
@@ -35,6 +37,3 @@ def generate_data_id(filename):
 
     return max(list_of_data_id) + 1
 
-
-
-read_data("question.csv")
