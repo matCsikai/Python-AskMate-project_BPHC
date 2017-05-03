@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All question</title>
+    <style>
+        th {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>All question</h1>
+    <a href="/story" class="button">Ask a new Question</a>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Questions</th>
+        </tr>
+        {% for id, submisson_time, view_number, vote_number, title, message, image in questions %}
+        <tr>
+            <td> {{ id }} </td>
+            <td> {{ title }} </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
