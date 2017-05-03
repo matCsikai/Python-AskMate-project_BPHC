@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+
+    <title>AskMate
+    </title>
+
+    </head>
+        
+    <body>
+        {% for id, submisson_time, view_number, vote_number, title, message, image in question_line %}
+        <h1>Question {{ id }}
+        </h1>
+
+        <label for="Question">Question {{ title }} {{ message }}
+        </label>
+
+        <label>Submission time:<label><br>
+        {{ submisson_time }} View number {{ view_number }} Vote number {{ vote_number}} {{ image }}
+
+        <label>View number:<label><br>
+        {{ view_number }} Vote number {{ vote_number}} {{ image }}
+
+        <label>Vote number:<label><br>
+        {{ view_number }} Vote number {{ vote_number}} {{ image }}
+
+    
+        <tr>
+            <th>ID</th>
+            <th>Questions</th>
+        </tr>
+        {% for id, submisson_time, view_number, vote_number, title, message, image in questions %}
+        <tr>
+            <td> {{ id }} </td>
+            <td> {{ title }} </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
