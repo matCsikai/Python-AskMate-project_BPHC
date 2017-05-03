@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> {{ title }} </title>
+</head>
+<body>
+    <h1> {{ title }} </h1>
+    <a href="/" class="button">Back to the list of questions</a>
+    <form method="POST">
+        <p>
+            <label for="question_title">Question Title</label>
+            <input type="text" id="question_title" name="question_title" value="{{ question_title }}">
+        </p>
+        <p>
+        <label for="user_story">Message</label>
+        <textarea rows="4" cols="50" id="message" name="message" value ="{{ message }}"></textarea>
+        </p>
+        <input type="submit" value="{{ button_name }}" class="button" id="{{ button_name }}">
+    </form>
+</body>
+
+</html>
