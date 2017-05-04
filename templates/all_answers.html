@@ -10,21 +10,26 @@
 
 <body>
     <h1>Question {{ question_line[0] }}</h1>
+
+    <a href="/" class="button">Back to the list of questions</a>
     
     <p><h2>{{ question_line[4] }}</h2></p>
     <p><h2>{{ question_line[5] }}</h2></p>
     <p>* Submission time: {{ question_line[1] }} * View number: {{ question_line[2] }} * Vote number: {{ question_line[3] }} *</p>
     <p> {{ image }} </p>
+
+    <hr>
+    <hr>
         
     {% for answer_id, submisson_time, vote_number, question_id, message, image in answers %}
-    <h1>Answer {{ answer_id }}</h1>
     
     <p><h2>{{ message }}</h2></p>
     <p>* Submission time: {{ submisson_time }} * Vote number: {{ vote_number }} *</p>
     <p> {{ image }} </p>
+    <hr>
     {% endfor %}
 
-    <input href="/question/<question_id>/new-answer" type="submit" value="Post an answer">
+    <a href="/question/{{ question_line[0] }}/new-answer" class="button">Add answer</a>
         
         
 </body>
