@@ -13,12 +13,10 @@ def all_answers(question_id):
         if str(question_id) in data_line[3]:
             answers.append(data_line)
     print(answers)
-
     for data_line in question_database:
         if str(question_id) in data_line[0]:
             question_line = data_line
-            print(question_line)
-    return render_template('all_answers.html', question_line=question_line)
+    return render_template('all_answers.html', question_line=question_line, answers=answers)
 
     
 
