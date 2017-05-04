@@ -33,5 +33,18 @@ def page_questions():
     return render_template("get_data.html",  title=title, button_name=button_name)
 
 
+@app.route('/question/<question_id>', methods=['GET', 'POST']) # ???
+def all_answers(question_id):
+    answer_database = read_data('answer.csv')
+    question_database = read_data('question.csv')
+    answers = []
+    for data_line in answer_database:
+        if str(question_id) in data_line[3]:
+            answers.append(data_line)
+    for data_line in question_database:
+        if str(question_id) in data_line[0]:
+            question_line = data_line
+    return render_template('all_answers.html', question_line=question_line, answers=answers)
+
 if __name__ == "__main__":
     app.run()
