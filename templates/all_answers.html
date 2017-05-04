@@ -9,23 +9,18 @@
 </head>
 
 <body>
-    <h1>Question {{ question_id }}</h1>
-    <table>
-        {% for question_id, submisson_time, view_number, vote_number, title, message, image in question_line %}
+    <h1>Question {{ question_line[0] }}</h1>
+    
+    <p><h2>{{ question_line[4] }}</h2></p>
+    <p><h2>{{ question_line[5] }}</h2></p>
+
+        
         <tr>
-            <th>{{ title }}</th>
-            <th>{{ message }}</th>
-            <th>{{}}</th>
-        </tr>
-        {% endfor %}
-        {% for question_id, submisson_time, view_number, vote_number, title, message, image in question_line %}
-        <tr>
-            <td> Submission time: {{ submisson_time }} </td>
-            <td> View number: {{ view_number }} </td>
-            <td> Vote number: {{ vote_number }} </td>
+            <td> Submission time: {{ question_line[1] }} </td>
+            <td> View number: {{ question_line[2] }} </td>
+            <td> Vote number: {{ question_line[3] }} </td>
             <td> {{ image }} </td>
         </tr>
-        {% endfor %}
     </table>
 
 </body>
