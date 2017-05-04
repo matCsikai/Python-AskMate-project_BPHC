@@ -1,6 +1,7 @@
 * {
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
+    transition: 0.3s;
 }
 h1 {
     font-size: 21px;
@@ -28,6 +29,11 @@ td, th {
     text-decoration: none;
     border: 1px solid #555;
 }
+.button:hover {
+    opacity: 0.8;
+    text-decoration: none;
+    
+}
 input, select, textarea {
     display: block;
     margin: 0 0 10px;
@@ -41,4 +47,13 @@ input[type="submit"]{
 }
 .icon {
     width: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+}
+a:hover {
+    text-decoration: underline
 }
