@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
-from common import read_data, write_data, generate_data_id
+from common import read_data, write_data, generate_data_id, time_decode
 import time
 app = Flask(__name__)
 
@@ -9,13 +9,7 @@ app = Flask(__name__)
 def page_home():
     file_name = "question.csv"
     all_data = read_data(file_name)
-    decoded_data = []
-    for line in all_data:
-        time_number = int(line[1])
-        localtime = time.localtime(time_number)
-        line[1] = time.strftime("%Y-%m-%d %H:%M:%S", localtime)
-        decoded_data.append(line)
-
+    decoded_data = time_decode(all_data)
     return render_template("all_question.html", questions=decoded_data)
 
 
@@ -29,7 +23,7 @@ def page_questions():
     data_list = []
     if request.method == "POST":
         data_list.append(str(generate_data_id(file_name)))
-        data_list.append(str(timestamp))  # here will the UNIX timestamp added to the list
+        data_list.append(str(timestamp))
         data_list.append(' ')  # view number
         data_list.append(' ')  # vote number
         data_list.append(request.form['question_title'])
@@ -46,19 +40,8 @@ def all_answers(question_id):
     answer_database = read_data('answer.csv')
     question_database = read_data('question.csv')
 
-    decoded_data_question = []
-    for line in question_database:
-        time_number = int(line[1])
-        localtime = time.localtime(time_number)
-        line[1] = time.strftime("%Y-%m-%d %H:%M:%S", localtime)
-        decoded_data_question.append(line)
-
-    decoded_data_answer = []
-    for line in answer_database:
-        time_number = int(line[1])
-        localtime = time.localtime(time_number)
-        line[1] = time.strftime("%Y-%m-%d %H:%M:%S", localtime)
-        decoded_data_answer.append(line)
+    decoded_data_answer = time_decode(answer_database)
+    decoded_data_question = time_decode(question_database)
 
     answers = []
     for data_line in decoded_data_answer:
@@ -85,7 +68,7 @@ def new_answer(question_id):
     data_list = []
     if request.method == "POST":
         data_list.append(str(generate_data_id(file_name)))
-        data_list.append(str(timestamp))  # here will the UNIX timestamp added to the list
+        data_list.append(str(timestamp))
         data_list.append(' ')  # view number
         data_list.append(question_id)
         data_list.append(request.form['message'])
@@ -94,6 +77,7 @@ def new_answer(question_id):
         new_data_to_write = write_data(file_name, all_data)
         return redirect(url_for('all_answers', question_id=question_id))
     return render_template("add_answer.html", question_line=question_line)
+
 
 if __name__ == "__main__":
     app.run()

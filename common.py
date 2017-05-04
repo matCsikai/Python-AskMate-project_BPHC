@@ -1,5 +1,6 @@
 import csv
 import base64
+import time
 
 
 def read_data(file_name):
@@ -37,3 +38,12 @@ def generate_data_id(filename):
 
     return max(list_of_data_id) + 1
 
+
+def time_decode(all_data):
+    decoded_data = []
+    for line in all_data:
+        time_number = int(line[1])
+        localtime = time.localtime(time_number)
+        line[1] = time.strftime("%Y-%m-%d %H:%M:%S", localtime)
+        decoded_data.append(line)
+    return decoded_data
