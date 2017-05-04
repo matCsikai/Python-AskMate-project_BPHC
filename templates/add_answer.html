@@ -8,10 +8,14 @@
 </head>
 <body>
     <h1>Answer page</h1>
+    <h2>{{ question_line[4] }}</h2>
+    <p><b>{{ question_line[5] }}</b></p>
+    <hr>
     <form method="POST">
         <label for="answer"></label>
-        <textarea name="message" id="" cols="50" rows="10"></textarea>
+        <textarea name="message" id="" cols="50" rows="10" minlength="10"></textarea>
         <input type="submit" value="Send" class="button">
     </form>
+    <a href="/question/{{ question_line[0] }}" class="button">Back to the question page</a>
 </body>
 </html>

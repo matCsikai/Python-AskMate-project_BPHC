@@ -73,6 +73,11 @@ def all_answers(question_id):
 
 @app.route('/question/<question_id>/new-answer', methods=['GET', 'POST'])
 def new_answer(question_id):
+    question_database = read_data('question.csv')
+    for line in question_database:
+        if str(question_id) in line[0]:
+            question_line = line
+
     file_name = "answer.csv"
     button_name = "Post your answer"
     all_data = read_data(file_name)
@@ -88,7 +93,7 @@ def new_answer(question_id):
         all_data.append(data_list)
         new_data_to_write = write_data(file_name, all_data)
         return redirect(url_for('all_answers', question_id=question_id))
-    return render_template("add_answer.html")
+    return render_template("add_answer.html", question_line=question_line)
 
 if __name__ == "__main__":
     app.run()
